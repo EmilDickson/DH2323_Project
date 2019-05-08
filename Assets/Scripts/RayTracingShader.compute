@@ -236,7 +236,7 @@ void IntersectMeshObject(Ray ray, inout RayHit bestHit, MeshObject meshObject)
                 bestHit.distance = t;
                 bestHit.position = ray.origin + t * ray.direction;
                 // bestHit.normal = normalize(cross(v1 - v0, v2 - v0));
-                bestHit.normal = u * n0 + w * n1 + v * n2;
+                bestHit.normal = normalize(w*n0 + u*n1 + v*n2);
                 bestHit.albedo = 0.6f;
                 bestHit.specular = 0.1f;
                 bestHit.smoothness = 0.3f;
@@ -284,8 +284,8 @@ RayHit Trace(Ray ray)
 
     // Trace spheres
     //_Spheres.GetDimensions(numSpheres, stride);
-    for (uint i = 0; i < _spherecount; i++)
-        IntersectSphere(ray, bestHit, i);
+    // for (uint i = 0; i < _spherecount; i++)
+    //     IntersectSphere(ray, bestHit, i);
 
     // Trace mesh objects
     //_MeshObjects.GetDimensions(count, stride);
