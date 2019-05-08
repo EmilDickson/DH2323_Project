@@ -195,58 +195,58 @@ public class RayTracingMaster : MonoBehaviour
 
     private void SetUpScene()
     {
-        // Random.InitState(SphereSeed);
-        // List<Sphere> spheres = new List<Sphere>();
+        Random.InitState(SphereSeed);
+        List<Sphere> spheres = new List<Sphere>();
 
-        // // Add a random number of spheres
-        // for (int i = 0; i < SpheresMax; i++)
-        // {
-        //     Sphere sphere = new Sphere();
+        // Add a random number of spheres
+        for (int i = 0; i < SpheresMax; i++)
+        {
+            Sphere sphere = new Sphere();
 
-        //     // Radius and radius
-        //     sphere.radius = SphereRadius.x + Random.value * (SphereRadius.y - SphereRadius.x);
-        //     Vector2 randomPos = Random.insideUnitCircle * SpherePlacementRadius;
-        //     sphere.position = new Vector3(randomPos.x, sphere.radius, randomPos.y);
+            // Radius and radius
+            sphere.radius = SphereRadius.x + Random.value * (SphereRadius.y - SphereRadius.x);
+            Vector2 randomPos = Random.insideUnitCircle * SpherePlacementRadius;
+            sphere.position = new Vector3(randomPos.x, sphere.radius, randomPos.y);
 
-        //     // Reject spheres that are intersecting others
-        //     foreach (Sphere other in spheres)
-        //     {
-        //         float minDist = sphere.radius + other.radius;
-        //         if (Vector3.SqrMagnitude(sphere.position - other.position) < minDist * minDist)
-        //             goto SkipSphere;
-        //     }
+            // Reject spheres that are intersecting others
+            foreach (Sphere other in spheres)
+            {
+                float minDist = sphere.radius + other.radius;
+                if (Vector3.SqrMagnitude(sphere.position - other.position) < minDist * minDist)
+                    goto SkipSphere;
+            }
 
-        //     // Albedo and specular color
-        //     Color color = Random.ColorHSV();
-        //     float chance = Random.value;
-        //     if (chance < 0.8f)
-        //     {
-        //         bool metal = chance < 0.4f;
-        //         sphere.albedo = metal ? Vector4.zero : new Vector4(color.r, color.g, color.b);
-        //         sphere.specular = metal ? new Vector4(color.r, color.g, color.b) : new Vector4(0.04f, 0.04f, 0.04f);
-        //         sphere.smoothness = Random.value;
-        //     }
-        //     else
-        //     {
-        //         Color emission = Random.ColorHSV(0, 1, 0, 1, 3.0f, 8.0f);
-        //         sphere.emission = new Vector3(emission.r, emission.g, emission.b);
-        //     }
+            // Albedo and specular color
+            Color color = Random.ColorHSV();
+            float chance = Random.value;
+            if (chance < 0.8f)
+            {
+                bool metal = chance < 0.4f;
+                sphere.albedo = metal ? Vector4.zero : new Vector4(color.r, color.g, color.b);
+                sphere.specular = metal ? new Vector4(color.r, color.g, color.b) : new Vector4(0.04f, 0.04f, 0.04f);
+                sphere.smoothness = Random.value;
+            }
+            else
+            {
+                Color emission = Random.ColorHSV(0, 1, 0, 1, 3.0f, 8.0f);
+                sphere.emission = new Vector3(emission.r, emission.g, emission.b);
+            }
 
-        //     // Add sphere to the list
-        //     spheres.Add(sphere);
+            // Add sphere to the list
+            spheres.Add(sphere);
 
-        //     SkipSphere:
-        //     continue;
-        // }
-        // // Assign to compute buffer
-        // if (_sphereBuffer != null)
-        //     _sphereBuffer.Release();
-        // if (spheres.Count > 0)
-        // {
-        //     _sphereBuffer = new ComputeBuffer(spheres.Count, 56);
-        //     RayTracingShader.SetInt("_spherecount", spheres.Count);
-        //     _sphereBuffer.SetData(spheres);
-        // }
+            SkipSphere:
+            continue;
+        }
+        // Assign to compute buffer
+        if (_sphereBuffer != null)
+            _sphereBuffer.Release();
+        if (spheres.Count > 0)
+        {
+            _sphereBuffer = new ComputeBuffer(spheres.Count, 56);
+            RayTracingShader.SetInt("_spherecount", spheres.Count);
+            _sphereBuffer.SetData(spheres);
+        }
     }
 
     private void SetShaderParameters()
