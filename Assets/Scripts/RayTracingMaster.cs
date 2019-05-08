@@ -151,7 +151,6 @@ public class RayTracingMaster : MonoBehaviour
             RayTracingShader.SetBuffer(0, name, buffer);
         }
     }
-    //
 
     private void Awake()
     {
