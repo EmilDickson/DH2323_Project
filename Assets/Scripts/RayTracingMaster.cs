@@ -113,7 +113,7 @@ public class RayTracingMaster : MonoBehaviour
         CreateComputeBuffer(ref _vertexBuffer, _vertices, 12);
         RayTracingShader.SetInt("_vertexCount", _vertices.Count);
         CreateComputeBuffer(ref _normalBuffer, _normals, 12);
-        RayTracingShader.SetInt("_indexCount", _normals.Count);
+        RayTracingShader.SetInt("_normalCount", _normals.Count);
         CreateComputeBuffer(ref _indexBuffer, _indices, 4);
         RayTracingShader.SetInt("_indexCount", _indices.Count);
     }
