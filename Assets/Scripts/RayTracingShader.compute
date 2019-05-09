@@ -237,8 +237,8 @@ void IntersectMeshObject(Ray ray, inout RayHit bestHit, MeshObject meshObject)
                 bestHit.position = ray.origin + t * ray.direction;
                 // bestHit.normal = normalize(cross(v1 - v0, v2 - v0));
                 bestHit.normal = normalize(w*n0 + u*n1 + v*n2);
-                bestHit.albedo = 0.6f;
-                bestHit.specular = 0.95f;
+                bestHit.albedo = 0.25f;
+                bestHit.specular = 0.1f;
                 bestHit.smoothness = 0.3f;
                 bestHit.emission = 0.0f;
             }
