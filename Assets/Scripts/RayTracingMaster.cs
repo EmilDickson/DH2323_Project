@@ -309,6 +309,10 @@ public class RayTracingMaster : MonoBehaviour
         _addMaterial.SetFloat("_Sample", _currentSample);
         Graphics.Blit(_target, _converged, _addMaterial);
         Graphics.Blit(_converged, destination);
+
+        //Older blit thing.
+        //Graphics.Blit(_target, destination, _addMaterial);
+        
         _currentSample++;
     }
 
