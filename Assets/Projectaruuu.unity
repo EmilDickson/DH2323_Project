@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 525743361}
   - component: {fileID: 525743360}
   - component: {fileID: 525743363}
+  - component: {fileID: 525743364}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -241,6 +242,19 @@ MonoBehaviour:
   SphereRadius: {x: 3, y: 8}
   SpheresMax: 100
   SpherePlacementRadius: 100
+--- !u!114 &525743364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525743359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57285af82bdc64191beecfe95b1e0dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
 --- !u!1 &659837249
 GameObject:
   m_ObjectHideFlags: 0
