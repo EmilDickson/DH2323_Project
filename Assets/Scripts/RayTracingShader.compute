@@ -284,8 +284,8 @@ RayHit Trace(Ray ray)
 
     // Trace spheres
     // _Spheres.GetDimensions(numSpheres, stride);
-    // for (uint i = 0; i < _spherecount; i++)
-    //     IntersectSphere(ray, bestHit, i);
+    for (uint i = 0; i < _spherecount; i++)
+        IntersectSphere(ray, bestHit, i);
 
     // Trace mesh objects
     //_MeshObjects.GetDimensions(count, stride);
