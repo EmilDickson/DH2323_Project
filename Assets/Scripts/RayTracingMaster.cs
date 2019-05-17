@@ -55,6 +55,8 @@ public class RayTracingMaster : MonoBehaviour
         public Matrix4x4 localToWorldMatrix;
         public int indices_offset;
         public int indices_count;
+        public Vector3 albedo;
+        //public Color HSVColor;
     }
 
     private static List<MeshObject> _meshObjects = new List<MeshObject>();
@@ -86,6 +88,9 @@ public class RayTracingMaster : MonoBehaviour
         foreach (RayTracingObject obj in _rayTracingObjects)
         {
             Mesh mesh = obj.GetComponent<MeshFilter>().sharedMesh;
+            Material material = obj.GetComponent<MeshFilter>().gameObject.GetComponent<Renderer>().material;
+
+            Debug.Log(material.color);
 
             // Add vertex data
             int firstVertex = _vertices.Count;
@@ -104,11 +109,12 @@ public class RayTracingMaster : MonoBehaviour
             {
                 localToWorldMatrix = obj.transform.localToWorldMatrix,
                 indices_offset = firstIndex,
-                indices_count = indices.Length
+                indices_count = indices.Length,
+                albedo = new Vector4(material.color.r, material.color.g, material.color.b)
             });
         }
 
-        CreateComputeBuffer(ref _meshObjectBuffer, _meshObjects, 72);
+        CreateComputeBuffer(ref _meshObjectBuffer, _meshObjects, 84);
         RayTracingShader.SetInt("_meshObjectCount", _meshObjects.Count);
         CreateComputeBuffer(ref _vertexBuffer, _vertices, 12);
         RayTracingShader.SetInt("_vertexCount", _vertices.Count);
