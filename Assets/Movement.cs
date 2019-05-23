@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     // This script was found at https://answers.unity.com/questions/548794/how-to-move-a-camera-only-using-the-arrow-keys.html
     public float speed = 0.05f;
+    private Vector3 rotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,27 @@ public class Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.S))
         {
             transform.position += new Vector3(0,0,speed * Time.deltaTime);
+        }
+        // Rotation
+        if(Input.GetKey(KeyCode.UpArrow))
+        {
+            rotation = new Vector3(speed * Time.deltaTime,0,0);
+            transform.eulerAngles = transform.eulerAngles - rotation;
+        }
+        if(Input.GetKey(KeyCode.DownArrow))
+        {
+            rotation = new Vector3(-speed * Time.deltaTime,0,0);
+            transform.eulerAngles = transform.eulerAngles - rotation;
+        }
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            rotation = new Vector3(0,speed * Time.deltaTime,0);
+            transform.eulerAngles = transform.eulerAngles - rotation;
+        }
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            rotation = new Vector3(0,-speed * Time.deltaTime,0);
+            transform.eulerAngles = transform.eulerAngles - rotation;
         }
     }
 }
